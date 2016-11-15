@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ss</title>
+        <script src='jquery.js'></script>
+        <style media="screen">
+            .container{
+                height:500px;
+                width:500px;
+                border:1px solid black;
+                background-color: red;
+            }
+            #dragimg{
+                height:100px;
+                width:100px;
+                border:1px solid black;
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='dragimg' draggable="true"></div>
+        <div class="container"></div>
+    <script type="text/javascript">
+        var img = document.querySelector('#dragimg')
+        var container = document.querySelector('.container')
+        img.addEventListener('dragstart',function(event){
+            event.dataTransfer.effectAllowed = 'copy'
+            event.dataTransfer.setData('text/plain',event.target.id)
+
+        })
+        img.addEventListener('dragend',function(event) {
+
+        })
+        container.addEventListener('dragover',function(event){
+            event.preventDefault()
+        })
+
+        container.addEventListener('drop',function(event){
+            event.preventDefault()
+            var data = event.dataTransfer.getData('text/plain')
+            var x = $(`#${data}`)[0]
+            event.target.appendChild(x)
+        })
+
+    </script>
+    </body>
+</html>
