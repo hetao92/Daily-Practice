@@ -10,3 +10,7 @@
     background: url("./icon.png");
     font-family:myFont;
 }
+body{
+    /*background: blue;*/
+    background: red;
+}
