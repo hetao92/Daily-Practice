@@ -5,10 +5,15 @@ const path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
+
 module.exports = {
     entry:{
-        app:'./src/index.js',
+        main:'./src/index.js',
+        vendor:[
+            'lodash'
+        ]
         // print:'./src/print.js'
+        // another: './src/another-module.js'
     },
     devtool:'inline-source-map',
     devServer:{
@@ -16,7 +21,7 @@ module.exports = {
         hot: true
     },
     output:{
-        filename:'[name].bundle.js',
+        filename:'[name].[hash].js',
         path:path.resolve(__dirname,'dist')
     },
     module:{
@@ -48,9 +53,15 @@ module.exports = {
     },
     plugins:[
         new HtmlWebpackPlugin({
-            title:'Output Management'
+            title:'Code Splitting'
         }),
         new CleanWebpackPlugin(['dist']),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name:'vendor'
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'runtime'
+        })
     ],
 }

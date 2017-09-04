@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open"
+    "start":"webpack-dev-server --open"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "style-loader": "^0.18.2",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
+    "webpack-merge": "^4.1.0",
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
